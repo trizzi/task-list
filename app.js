@@ -8,7 +8,14 @@ const clearTask = document.querySelector('.clear-tasks');
 listenForTasks();
 
 function listenForTasks() {
+  // Get task list
   form.addEventListener('submit', getInputText);
+
+  // delete task list
+  taskLists.addEventListener('click', deleteTasklist);
+
+  // filter task list
+  filterInputs.addEventListener('keydown', getfilteredTask);
 }
 
 function getInputText(e) {
@@ -30,6 +37,19 @@ function getInputText(e) {
   taskLists.appendChild(inputText);
 
   taskInput.value = '';
+
+  e.preventDefault();
+}
+
+// delete tasklist
+function deleteTasklist(e) {
+  if (
+    e.target.parentElement.classList.contains('delete-item')
+  ) {
+    if (confirm('Are you sure?')) {
+      e.target.parentElement.parentElement.remove();
+    }
+  }
 
   e.preventDefault();
 }
