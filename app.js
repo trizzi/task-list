@@ -14,8 +14,8 @@ function listenForTasks() {
   // delete task list
   taskLists.addEventListener('click', deleteTasklist);
 
-  // filter task list
-  filterInputs.addEventListener('keydown', getfilteredTask);
+  // Clear all task list
+  clearTask.addEventListener('click', removeAllTasks);
 }
 
 function getInputText(e) {
@@ -52,4 +52,9 @@ function deleteTasklist(e) {
   }
 
   e.preventDefault();
+}
+
+// clear all tasks
+function removeAllTasks() {
+  taskLists.innerHTML = '';
 }
