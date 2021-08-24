@@ -16,6 +16,12 @@ function listenForTasks() {
 
   // Clear all task list
   clearTask.addEventListener('click', removeAllTasks);
+
+  // filter through tasks
+  filterInputs.addEventListener(
+    'keypress',
+    getFilteredInputs
+  );
 }
 
 function getInputText(e) {
@@ -57,4 +63,22 @@ function deleteTasklist(e) {
 // clear all tasks
 function removeAllTasks() {
   taskLists.innerHTML = '';
+}
+
+// filtered inputs
+function getFilteredInputs(e) {
+  const filterValue = e.target.value.toLowerCase();
+  console.log('filtervalue is working', filterValue);
+  document
+    .querySelectorAll('.collection-item')
+    .forEach(function (task) {
+      const item = task.firstChild.textContent;
+      console.log('item is working', item);
+      if (item.toLowerCase().indexOf(filterValue) != -1) {
+        task.style.display = 'block';
+        console.log('task is working', task);
+      } else {
+        task.style.display = 'none';
+      }
+    });
 }
